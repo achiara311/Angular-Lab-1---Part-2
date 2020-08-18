@@ -1,0 +1,62 @@
+.main {
+  display: flex;
+  justify-content: center;
+}
+
+.todo-container {
+  /* aligns to the center
+    automatically
+    since todo-container
+    is a child of 
+    main */
+  background-color: white;
+  width: 85%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+}
+.form {
+  /* acts as parent to
+    elements within it
+    thats why button 
+    expands all the way? */
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-container * {
+  margin: 10px 0;
+}
+
+.ordered-list {
+  /* moves numbers to the right back into box */
+  margin-left: 20px;
+}
+
+.list-item {
+  display: flex;
+}
+
+.task {
+  flex: 1;
+  /* saying: take up as much room as you can */
+  /* grows in proportion of any other flex property  */
+  /* this is used on .task, which is a child of list-item*/
+  /* no other flex properties in this child container YET */
+}
+.update-form {
+  flex: 1;
+  display: flex;
+}
+.complete {
+  border: 1px solid #ff69b4;
+  color: #ff69b4;
+  background-color: white;
+}
+
+.strike {
+  text-decoration: line-through;
+}
+.add {
+  background-color: #ff1493;
+  color: white;
+}

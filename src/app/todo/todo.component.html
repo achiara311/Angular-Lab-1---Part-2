@@ -1,0 +1,70 @@
+<main class="main">
+  <!-- make this a giant container to hold and move white square around -->
+  <section class="todo-container">
+    <h1>TODO List</h1>
+    <h2>A place to store your todos</h2>
+    <form class="form" #filterForm="ngForm" (input)="setSearchTerm(filterForm)">
+      <input
+        type="text"
+        placeholder="Filter your to-dos"
+        name="searchTerm"
+        id="searchTerm"
+        ngModel
+      />
+    </form>
+    <p *ngIf="todos.length === 0">Enter some to dos!</p>
+    <ol class="ordered-list">
+      <li *ngFor="let todo of myFilterMethod(); index as i">
+        <div class="list-item">
+          <button
+            class="complete"
+            (click)="completeTask(i)"
+            *ngIf="todo.completed === false"
+          >
+            Complete
+          </button>
+          <!-- below--HIDE TO NOT SHOW FORM -->
+
+          <!-- EXACT OPPOSITE -->
+          <p
+            *ngIf="showIndex !== i"
+            class="task"
+            [ngClass]="{ strike: todo.completed }"
+            (click)="setShowIndex(i)"
+          >
+            {{ todo.task }}
+          </p>
+          <!-- below--if youre equal to showIndex, I will
+          reveal myself to you to show which index is equal to it -->
+          <!-- only show the form that corresponds with correct index -->
+          <!--  IT WILL SHOW FORM AND HIDE THE EXISTING TEXT OF PARAGRAPH -->
+          <form
+            *ngIf="showIndex === i"
+            (ngSubmit)="resetShowIndex()"
+            class="update-form"
+          >
+            <!--  above--resetShowIndex removes index number, basically clears it -->
+
+            <!-- AFTER YOU HIT ENTER WHEN PUTTING NEW INPUT TO EXIT INPUT BOX OF EDIT FORM, 
+            [(ngModel)]="todo.task" IS DOING THAT FOR YOU-->
+            <input
+              type="text"
+              name="updateText"
+              [(ngModel)]="todo.task"
+              class="update-form"
+            />
+          </form>
+          <button class="remove" (click)="removeTask(i)">X</button>
+        </div>
+      </li>
+    </ol>
+    <form
+      class="form"
+      #contactForm="ngForm"
+      (ngSubmit)="submitForm(contactForm)"
+    >
+      <input type="text" placeholder="Add your to-dos" name="task" ngModel />
+      <button class="add">Add</button>
+    </form>
+  </section>
+</main>
